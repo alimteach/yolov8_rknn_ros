@@ -198,7 +198,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr &msg)
         
         // last_time = current_time;
         fps = 1.0 / (ros::Time::now() - current_time).toSec();
-        sprintf(text, "RKNN YOLOV8 FPS %.03f", fps);
+        sprintf(text, "RKNN YOLOV8 FPS %d", int(fps));
         cv::putText(orig_img, text, cv::Point(20, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0));
         image_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", orig_img).toImageMsg();
         image_pub.publish(image_msg);
